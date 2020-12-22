@@ -1,0 +1,16 @@
+
+.DateInput_input {
+    padding: 3px;
+    font-size: 15px;
+    background: #FFF;
+    /*border-color: #37383f;*/
+    color: #37383f;
+}
+
+.DateRangePickerInput {
+    border-radius: 8px;
+}
+
+.input-element {
+    background: #FFF;
+}
