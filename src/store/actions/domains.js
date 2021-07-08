@@ -1,3 +1,6 @@
+
+
+ 
 import config from "../../config/config";
 import axios from "axios";
 import {domainsConstants} from "../constants/domains";
@@ -85,5 +88,4 @@ export function deleteDomainsData(domainId) {
         );
     };
 }
-
 

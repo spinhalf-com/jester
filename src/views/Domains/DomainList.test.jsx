@@ -1,47 +1,43 @@
-import React from 'react'
+import React from 'react';
+import { CButton, CModal } from '@coreui/react';
+import CIcon from '@coreui/icons-react';
+import { act } from '@testing-library/react';
+import { mount } from 'enzyme';
+import setupMountWrapper from '../../test/helpers/setupMountWrapper';
+import findByTestAttr from '../../test/utils/findByTestAttr';
+import { DomainList } from './DomainList.jsx';
 
-import { shallow, mount } from 'enzyme';
-import { DomainList } from './DomainList'
-import { CButton } from '@coreui/react';
+const props = {
+  domainData: [{ id: '1' }],
+  getDomainData: jest.fn(),
+  deleteDomainData: jest.fn(),
+};
 
-describe('<DomainList />', () => {
-    const defaultProps = {
-        domainData: null,
-        getDomainData: jest.fn(),
-        deleteDomainData: jest.fn()
-    }
+afterEach(() => {
+  jest.restoreAllMocks();
+});
 
-    //https://enzymejs.github.io/enzyme/
-    //https://jestjs.io/docs/en/tutorial-react
+test('DomainList should renders without error', () => {
+  const wrapper = setupMountWrapper(DomainList, props);
+  expect(wrapper).toHaveLength(1);
+});
 
-    beforeEach( () => {
-        jest.clearAllMocks()
-    })
+//! ====>  PLEASE update your React-project And uncomment these tests
+// test('CIcon should deleteRecord in response on click event || and open a Modal', () => {
+//   const setDanger = jest.fn();
+//   jest
+//     .spyOn(React, 'useState')
+//     .mockReturnValueOnce([false, setDanger])
+//     .mockReturnValueOnce([setDanger, jest.fn()]);
+//   const wrapper = setupMountWrapper(DomainList, props);
 
-    const renderComponent = (props = {}) => {
-        return mount(<DomainList {...defaultProps} {...props} />);
-      };
-
-      it('should render without crashing and have expected component with defaultProps', () => {
-        const renderedItem = renderComponent();
-        // expect(defaultProps.getDomainData()).to
-
-      } );
-
-      it('should have right component structure with default Props', () => {
-        const renderedItem = renderComponent();
-        // console.log(renderedItem.debug())
-        expect(renderedItem.find('.form-control')).toHaveLength(3);
-      })
-
-      it('should render correctly with 1 item', () => {
-        const mockDomainData = [{xyz: 1}];
-        const renderedItem = renderComponent({domainData: mockDomainData});
-        // console.log(renderedItem.debug())
-        expect(defaultProps.getDomainData).toHaveBeenCalledTimes(1);
-        // expect(renderedItem.find('.')).toHaveLength(1);
-
-        // expect(defaultProps.deleteDomainData).toHaveBeenCalledWith({id:xyz});
-      })
-
-})
+//   const Modal = wrapper.find(CModal);
+//   const trashIcon = findByTestAttr(wrapper, 'icon-trash');
+//   act(() => {
+//     console.log(trashIcon.at(0).debug());
+//     trashIcon.at(0).simulate('click');
+//     console.log(Modal.debug());
+//   });
+//   expect(setDanger).toHaveBeenCalledWith(props.domainData[0].id);
+//   expect(Modal.props().show).toEqual(true);
+// });
